@@ -36,6 +36,50 @@
         }
     },
 
+    "PickRandomIntegerTask" : {
+        "Type" : "AWS::Lambda::Function",
+        "Properties" : {
+            "Handler" : "MyStepFunction::MyStepFunction.StepFunctionTasks::PickRandomInteger",
+            "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+            "Runtime" : "dotnetcore2.1",
+            "MemorySize" : 256,
+            "Timeout" : 30,
+            "Code" : {
+                "S3Bucket" : "",
+                "S3Key" : ""
+            }
+        }
+    },    
+
+    "SetParTask" : {
+        "Type" : "AWS::Lambda::Function",
+        "Properties" : {
+            "Handler" : "MyStepFunction::MyStepFunction.StepFunctionTasks::SetPar",
+            "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+            "Runtime" : "dotnetcore2.1",
+            "MemorySize" : 256,
+            "Timeout" : 30,
+            "Code" : {
+                "S3Bucket" : "",
+                "S3Key" : ""
+            }
+        }
+    },        
+    "SetImparTask" : {
+        "Type" : "AWS::Lambda::Function",
+        "Properties" : {
+            "Handler" : "MyStepFunction::MyStepFunction.StepFunctionTasks::SetImpar",
+            "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+            "Runtime" : "dotnetcore2.1",
+            "MemorySize" : 256,
+            "Timeout" : 30,
+            "Code" : {
+                "S3Bucket" : "",
+                "S3Key" : ""
+            }
+        }
+    },           
+
     "StateMachine" : {
         "Type" : "AWS::StepFunctions::StateMachine",
         "Properties": {

@@ -54,6 +54,7 @@ namespace MyStepFunction
         public State SetPar(State state, ILambdaContext context)
         {
             state.IsEven = true;
+            state.IsOdd = false;
             state.TimeStamp = DateTime.UtcNow;
             return state;
         }
@@ -61,6 +62,7 @@ namespace MyStepFunction
         public State SetImpar(State state, ILambdaContext context)
         {
             state.IsOdd = true;
+            state.IsEven = false;
             state.TimeStamp = DateTime.UtcNow;
             return state;
         }

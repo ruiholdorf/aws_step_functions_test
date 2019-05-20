@@ -100,9 +100,9 @@ dotnet new serverless.StepFunctionsHelloWorld --name MyStepFunction --profile la
 
 Isso irá criar um projeto contendo:
 
-* serverless.template - Um template para o AWS CloudFormation declarando a function Serverless e outros recursos necessários.
+* serverless.template - Um template para o AWS CloudFormation declarando a function Serverless e outros recursos necessários. Neste arquivo que devem ser declarados os Lambda Functions que a State Machine do Step Function irá chamar.
 * state-machine.json - A definição do workflow (state machine) desta Step Function.
-* StepFunctionTasks.cs - Essa classe contém as Lambda Functions que a state machine do Step Function orá chamar.
+* StepFunctionTasks.cs - Essa classe contém as Lambda Functions que a state machine do Step Function irá chamar.
 * State.cs - Essa classe representa o estado das execuções do Step Function entre cada cgamada das Lambda Functions. É nela que devem ser criadas as propriedades correspondentes ao JSON passado como parâmetro no momento da execução.
 * aws-lambda-tools-defaults.json - argumentos padrão para usar com o Visual Studio e ferramentas de CLI do AWS.
 

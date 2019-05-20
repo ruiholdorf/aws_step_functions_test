@@ -10,7 +10,37 @@
     "WaitToActivate": {
       "Type": "Wait",
       "SecondsPath": "$.WaitInSeconds",
+      "Next": "PickRandomInteger"
+    },
+    "PickRandomInteger": {
+      "Type": "Task",
+      "Resource": "${PickRandomIntegerTask.Arn}",
+      "Next" : "ChoiceState"
+    },
+    "ChoiceState":{
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.IsEven",
+          "BooleanEquals": true,
+          "Next" : "SetPar"
+        },
+        {
+          "Variable": "$.IsEven",
+          "BooleanEquals": false,
+          "Next" : "SetImpar"
+        }
+      ]
+    },
+    "SetPar" : { 
+      "Type": "Task",
+      "Resource": "${SetParTask.Arn}",
       "Next": "Salutations"
+    },
+    "SetImpar" : {
+      "Type": "Task",
+      "Resource": "${SetImparTask.Arn}",
+      "Next": "Salutations"      
     },
     "Salutations": {
       "Type": "Task",
