@@ -14,6 +14,8 @@ namespace MyStepFunction
 {
     public class StepFunctionTasks
     {
+        private static Random _rnd = new Random();
+
         /// <summary>
         /// Default constructor that Lambda will invoke.
         /// </summary>
@@ -25,31 +27,41 @@ namespace MyStepFunction
         public State Greeting(State state, ILambdaContext context)
         {
             state.Message = "Hello";
-
-            if(!string.IsNullOrEmpty(state.Name))
-            {
+            if (!string.IsNullOrEmpty(state.Name))
                 state.Message += " " + state.Name;
-            }
 
-            state.Aderbaldo = DateTime.UtcNow.ToString();
-
-            // Tell Step Function to wait 5 seconds before calling 
-            state.WaitInSeconds = 5;
-
+            state.TimeStamp = DateTime.UtcNow;
             return state;
         }
 
         public State Salutations(State state, ILambdaContext context)
         {
             state.Message += ", Goodbye";
-
             if (!string.IsNullOrEmpty(state.Name))
-            {
                 state.Message += " " + state.Name;
-            }
 
-            state.Aderbaldo = DateTime.UtcNow.ToString();
+            state.TimeStamp = DateTime.UtcNow;
+            return state;
+        }
 
+        public State PickRandomInteger(State state, ILambdaContext context)
+        {
+            state.TheNumber = _rnd.Next(1, 100);
+            state.TimeStamp = DateTime.UtcNow;
+            return state;
+        }
+
+        public State SetPar(State state, ILambdaContext context)
+        {
+            state.IsEven = true;
+            state.TimeStamp = DateTime.UtcNow;
+            return state;
+        }
+
+        public State SetImpar(State state, ILambdaContext context)
+        {
+            state.IsOdd = true;
+            state.TimeStamp = DateTime.UtcNow;
             return state;
         }
     }
