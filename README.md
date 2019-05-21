@@ -118,17 +118,19 @@ Isso irá criar um projeto contendo:
 Um projeto de teste também deve ter sido criado.
 O projeto gerado é um exemplo simples Hello World do Step Functions. 
 São geradas 2 funções Lambda que são chamadas como Tasks na state machine. 
-No arquivo state-machine.json é definida a State Machine que informa ao Step Function em que ordem deve ser chamada as Lambda Functions. O estado de execução da Step Function é mantido no objeto State que é de onde a Lambda Function lê, grava e retorna os dados. No exemplo a primeira função Lambda também retorna o tempo de espera para mostrar como configurar uma pausa na State Machine.
+No arquivo ```state-machine.json``` é definida a State Machine que informa ao Step Function em que ordem deve ser chamada as Lambda Functions. 
+O estado de execução da Step Function é mantido no objeto ```State``` que é de onde a Lambda Function lê, grava e retorna os dados.
+No exemplo a primeira função Lambda também retorna o tempo de espera para mostrar como configurar uma pausa na State Machine.
 
 ### Deploy do projeto Step Functions
 
-Antes de realizar o deploy é preciso ter criado um Bucket S3 para armazenar os assemblies. Para realizar o deploy execute o seguinte comando (troque o valore de --s3-bucket)
+Antes de realizar o deploy é preciso ter criado um Bucket S3 para armazenar os assemblies. Para realizar o deploy execute o seguinte comando (troque o valore de --s3-bucket):
 
 ```console
 cd [caminho].../MyStepFunction/src/MyStepFunction
 dotnet lambda deploy-serverless --s3-bucket stepfunctions-tests --stack-name MeuCloudFormationStackName
 ```
 
-O Step Function e demais recursos serão criados conforme a necessidade, e estarão disponíveis do Console, na região especificada para criação ("region", em aws-lambda-tools-defaults.json).
+O Step Function e demais recursos serão criados conforme a necessidade, e estarão disponíveis para testes no Console AWS, na região especificada para criação.
 
 Obs.: Atualizações ao Step Function podem ser feitas executando o mesmo comando do deploy.
