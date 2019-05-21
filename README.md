@@ -4,7 +4,7 @@ Teste com Step Functions do AWS.
 
 veja: [Building Lambda Functions with C#](https://docs.aws.amazon.com/lambda/latest/dg/dotnet-programming-model.html)
 
-## 1 Configuração do ambiente
+## 1. Configuração do ambiente
 
 Pré requisitos:
 - [python / pip / aws cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
@@ -53,7 +53,7 @@ dotnet tool update -g Amazon.Lambda.Tools
 ```
 
 
-## 2 Criação e execução de uma Lambda Function
+## 2. Criação e execução de uma Lambda Function
 
 ### Criar uma Role para executar Lambda
 
@@ -97,7 +97,7 @@ END RequestId: id
 REPORT RequestId: id  Duration: 0.99 ms       Billed Duration: 100 ms         Memory Size: 256 MB     Max Memory Used: 12 MB
 ```
 
-## 3 Criação e execução um Step Function
+## 3. Criação e execução um Step Function
 
 ### Criando um projeto para Step Functions
 
@@ -113,7 +113,7 @@ Isso irá criar um projeto contendo:
 * ```state-machine.json``` - A definição do workflow (state machine) desta Step Function.
 * ```StepFunctionTasks.cs``` - Essa classe contém as Lambda Functions que a state machine do Step Function irá chamar.
 * ```State.cs``` - Essa classe representa o estado das execuções do Step Function entre cada cgamada das Lambda Functions. É nela que devem ser criadas as propriedades correspondentes ao JSON passado como parâmetro no momento da execução.
-* ```aws-lambda-tools-defaults.json``` - argumentos padrão para usar com o Visual Studio e ferramentas de CLI do AWS.
+* ```aws-lambda-tools-defaults.json``` - argumentos padrão para deploy via Visual Studio ou CLI.
 
 Um projeto de teste também deve ter sido criado.
 O projeto gerado é um exemplo simples Hello World do Step Functions. 
@@ -131,4 +131,4 @@ dotnet lambda deploy-serverless --s3-bucket stepfunctions-tests --stack-name Meu
 
 O Step Function e demais recursos serão criados conforme a necessidade, e estarão disponíveis do Console, na região especificada para criação ("region", em aws-lambda-tools-defaults.json).
 
-Atualizações ao Step Function podem ser feitas executando o mesmo comando do deploy.
+Obs.: Atualizações ao Step Function podem ser feitas executando o mesmo comando do deploy.
