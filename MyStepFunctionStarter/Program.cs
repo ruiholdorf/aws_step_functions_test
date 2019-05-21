@@ -29,8 +29,7 @@ namespace MyStepFunctionStarter
         {
             var options = new CredentialProfileOptions
             {
-                AccessKey = "AKIAZDL54SP7JOWTQJFS",
-                SecretKey = "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"
+
             };
 
             var profile = new CredentialProfile("basic_profile", options);
