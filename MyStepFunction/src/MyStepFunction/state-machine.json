@@ -1,51 +1,46 @@
 ﻿{
-  "Comment": "State Machine",
-  "StartAt": "Greeting",
-  "States": {
-    "Greeting": {
-      "Type": "Task",
-      "Resource": "${GreetingTask.Arn}",
-      "Next": "WaitToActivate"
-    },
-    "WaitToActivate": {
-      "Type": "Wait",
-      "SecondsPath": "$.WaitInSeconds",
-      "Next": "PickRandomInteger"
-    },
-    "PickRandomInteger": {
-      "Type": "Task",
-      "Resource": "${PickRandomIntegerTask.Arn}",
-      "Next" : "ChoiceState"
-    },
-    "ChoiceState":{
-      "Type": "Choice",
-      "Choices": [
-        {
-          "Variable": "$.IsEven",
-          "BooleanEquals": true,
-          "Next" : "SetPar"
-        },
-        {
-          "Variable": "$.IsEven",
-          "BooleanEquals": false,
-          "Next" : "SetImpar"
-        }
-      ]
-    },
-    "SetPar" : { 
-      "Type": "Task",
-      "Resource": "${SetParTask.Arn}",
-      "Next": "Salutations"
-    },
-    "SetImpar" : {
-      "Type": "Task",
-      "Resource": "${SetImparTask.Arn}",
-      "Next": "Salutations"      
-    },
-    "Salutations": {
-      "Type": "Task",
-      "Resource": "${SalutationsTask.Arn}",
-      "End": true
-    }
-  }
+	"Comment": "State Machine",
+	"StartAt": "SetStartTime",
+	"States": {
+		"SetStartTime": {
+			"Type": "Task",
+			"Resource": "${SetStartTimeTask.Arn}",
+			"Next": "TestIfIsOddOrEven"
+		},
+		"TestIfIsOddOrEven": {
+			"Type": "Task",
+			"Resource": "${TestIfIsOddOrEvenTask.Arn}",
+			"Next": "ChoiceState"
+		},
+		"ChoiceState": {
+			"Type": "Choice",
+			"Choices": [
+				{
+					"Variable": "$.IsEven",
+					"BooleanEquals": true,
+					"Next": "SetPar"
+				},
+				{
+					"Variable": "$.IsEven",
+					"BooleanEquals": false,
+					"Next": "SetImpar"
+				}
+			]
+		},
+		"SetPar": {
+			"Type": "Task",
+			"Resource": "${SetParTask.Arn}",
+			"Next": "SetEndTime"
+		},
+		"SetImpar": {
+			"Type": "Task",
+			"Resource": "${SetImparTask.Arn}",
+			"Next": "SetEndTime"
+		},
+		"SetEndTime": {
+			"Type": "Task",
+			"Resource": "${SetEndTimeTask.Arn}",
+			"End": true
+		}
+	}
 }

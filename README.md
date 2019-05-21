@@ -5,9 +5,9 @@ Teste com Step Functions do AWS
 veja: [Building Lambda Functions with C#](https://docs.aws.amazon.com/lambda/latest/dg/dotnet-programming-model.html)
 
 pre-reqs:
-    - python
-    - pip
-    - aws cli
+- python
+- pip
+- aws cli
 
 Precisa configurar o AWS CLI para um usuário com poderes adequados e region ajustado para São Paulo:
 
@@ -115,15 +115,10 @@ O projeto gerado é um exemplo simples Hello World do Step Functions. São gerad
 Antes de realizar o deploy é preciso ter criado um Bucket S3 para armazenar os assemblies. Para realizar o deploy execute o seguinte comando (troque o valore de --s3-bucket)
 
 ``` code
-cd [caminho].../MyStepFunction/src/MyStepFunction --s3-bucket stepfunctions-tests
-dotnet lambda deploy-serverless
+cd [caminho].../MyStepFunction/src/MyStepFunction
+dotnet lambda deploy-serverless --s3-bucket stepfunctions-tests --stack-name MeuCloudFormationStackName
 ```
 
 O Step Function e demais recursos serão criados conforme a necessidade, e estarão disponíveis do Console, na região especificada para criação ("region", em aws-lambda-tools-defaults.json).
 
-Atualizações ao Step Function podem ser feitas executando o mesmo comando do deploy:
-
-``` code
-cd [caminho].../MyStepFunction/src/MyStepFunction --s3-bucket stepfunctions-tests
-dotnet lambda deploy-serverless
-```
+Atualizações ao Step Function podem ser feitas executando o mesmo comando do deploy.
