@@ -62,7 +62,8 @@ Veja: [AWS Lambda Execution Role](https://docs.aws.amazon.com/lambda/latest/dg/l
 
 ### Criar um novo projeto Lambda Function vazio
 
-Crie um novo projeto, informando ao dotnet cli para usar o template lambda.EmptyFunction, com o nome MyFunction, com o profile apontando para o Role criado anteriormente e com a region para São Paulo:
+Você pode usar o projeto MyFunction, ou criar seu próprio projeto.
+Para criar um novo projeto, informando ao dotnet cli para usar o template lambda.EmptyFunction, com o nome MyFunction, com o profile apontando para o Role criado anteriormente e com a region para São Paulo:
 
 ```console
 dotnet new lambda.EmptyFunction --name MyFunction --profile lambda-role --region sa-east-1
@@ -101,6 +102,7 @@ REPORT RequestId: id  Duration: 0.99 ms       Billed Duration: 100 ms         Me
 
 ### Criando um projeto para Step Functions
 
+Você pode usar o projeto MyStepFunction, ou criar seu próprio projeto.
 A criação e execução com sucesso o projeto simples de Lambda Function garante que a infra-estrutura necessária está configurada e ok. Crie um projeto "vazio" utilizando o template do Step Functions:
 
 ```console
@@ -134,3 +136,7 @@ dotnet lambda deploy-serverless --s3-bucket stepfunctions-tests --stack-name Meu
 O Step Function e demais recursos serão criados conforme a necessidade, e estarão disponíveis para testes no Console AWS, na região especificada para criação.
 
 Obs.: Atualizações ao Step Function podem ser feitas executando o mesmo comando do deploy.
+
+## 4. Iniciar um Step Function programaticamente
+
+Você pode usar o projeto MyStepFunctionStarter para iniciar o Step Function, passar parâmetros e recuperar o resultado final do processamento.
