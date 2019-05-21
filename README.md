@@ -4,16 +4,15 @@ Teste com Step Functions do AWS.
 
 veja: [Building Lambda Functions with C#](https://docs.aws.amazon.com/lambda/latest/dg/dotnet-programming-model.html)
 
-## Configuração
+## 1 Configuração do ambiente
 
-pre-reqs:
-- python
-- pip
-- aws cli
+Pré requisitos:
+- [python / pip / aws cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+- [dotnet core](https://dotnet.microsoft.com/download)
 
 ### Configuração do AWS CLI
 
-Configure o AWS CLI para um usuário com acessos adequados e region ajustado para São Paulo:
+Crie um usuário específico com o nível de acesso adequado, utilizando o Console AWS. Configure o AWS CLI para este usuário e region ajustado para São Paulo:
 
 ```code
 $ aws configure
@@ -54,7 +53,7 @@ dotnet tool update -g Amazon.Lambda.Tools
 ```
 
 
-## Criar e executar uma Lambda Function
+## 2 Criação e execução de uma Lambda Function
 
 ### Criar uma Role para executar Lambda
 
@@ -98,7 +97,7 @@ END RequestId: id
 REPORT RequestId: id  Duration: 0.99 ms       Billed Duration: 100 ms         Memory Size: 256 MB     Max Memory Used: 12 MB
 ```
 
-## Criar e executar um Step Function
+## 3 Criação e execução um Step Function
 
 ### Criando um projeto para Step Functions
 
@@ -125,7 +124,7 @@ No arquivo state-machine.json é definida a State Machine que informa ao Step Fu
 
 Antes de realizar o deploy é preciso ter criado um Bucket S3 para armazenar os assemblies. Para realizar o deploy execute o seguinte comando (troque o valore de --s3-bucket)
 
-``` code
+```console
 cd [caminho].../MyStepFunction/src/MyStepFunction
 dotnet lambda deploy-serverless --s3-bucket stepfunctions-tests --stack-name MeuCloudFormationStackName
 ```
