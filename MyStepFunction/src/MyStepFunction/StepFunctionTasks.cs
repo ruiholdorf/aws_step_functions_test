@@ -33,7 +33,7 @@ namespace MyStepFunction
 
         public State TestIfIsOddOrEven(State state, ILambdaContext context)
         {
-            state.IsEven = ((state.Number / 2D) == state.Number / 2);
+            state.IsEven = ((state.Number / 2D) == Math.Abs(state.Number / 2));
             return state;
         }
 
