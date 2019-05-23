@@ -180,6 +180,6 @@ cd RandomGenerator/src/RandomGenerator
 dotnet lambda deploy-serverless 
 ```
 
-No final do processo de deploy a URL para acesso é exibida.
+No final do processo de deploy a URL para acesso a WebAPI é exibida e já pode ser testada.
 A webapi e demais recursos são criados conforme a necessiade e estarão disponíveis para testes no Console AWS, na região especificada para criação.
 

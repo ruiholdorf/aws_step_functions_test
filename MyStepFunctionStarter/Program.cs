@@ -12,8 +12,8 @@ namespace MyStepFunctionStarter
 {
     static class Program
     {
-        private static readonly string _stateMachineArn = "arn:aws:states:sa-east-1:625718629374:stateMachine:StateMachine-GXfZlGTLUzOM";
-        private static readonly string _executionArn = "arn:aws:states:sa-east-1:625718629374:execution:StateMachine-GXfZlGTLUzOM";
+        private static readonly string _stateMachineArn = "arn:aws:states:sa-east-1:625718629374:stateMachine:StateMachine-JXS9zp6wTc8S";
+        private static readonly string _executionArn = "arn:aws:states:sa-east-1:625718629374:execution:StateMachine-JXS9zp6wTc8S";
         private static readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings
         {
             ContractResolver = new DefaultContractResolver
@@ -52,6 +52,9 @@ namespace MyStepFunctionStarter
                     Name = executionName,
                     StateMachineArn = _stateMachineArn
                 };
+
+                Console.WriteLine("Sending:");
+                Console.WriteLine(request.Input);
 
                 var response = await client.StartExecutionAsync(request);
                 if (response.HttpStatusCode != System.Net.HttpStatusCode.OK)

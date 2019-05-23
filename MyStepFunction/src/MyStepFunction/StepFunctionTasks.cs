@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Amazon.Lambda.Core;
 
@@ -11,11 +12,33 @@ namespace MyStepFunction
 {
     public class StepFunctionTasks
     {
-        /// <summary>
-        /// Default constructor that Lambda will invoke.
-        /// </summary>
-        public StepFunctionTasks()
+        public async Task<State> FetchRandomNumber(State state, ILambdaContext context)
         {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                using (var request = new HttpRequestMessage(HttpMethod.Get, "https://4xnebbz8yl.execute-api.sa-east-1.amazonaws.com/Prod/api/numbers"))
+                using (var response = await httpClient.SendAsync(request))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var number = await response.Content.ReadAsStringAsync();
+                        state.Message = "recuperou da WebAPI";
+                        state.Number = int.Parse(number);
+                    }
+                    else
+                    {
+                        state.Number = -1;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                state.Message = e.Message;
+                state.Number = -2;
+            }
+
+            return state;
         }
 
         public State SetStartTime(State state, ILambdaContext context)
@@ -45,7 +68,7 @@ namespace MyStepFunction
 
         public State SetImpar(State state, ILambdaContext context)
         {
-            state.OddOrEven = "�mpar";
+            state.OddOrEven = "ímpar";
             return state;
         }
     }

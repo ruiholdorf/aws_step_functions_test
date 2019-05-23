@@ -1,46 +1,51 @@
 ﻿{
-	"Comment": "State Machine",
-	"StartAt": "SetStartTime",
-	"States": {
-		"SetStartTime": {
-			"Type": "Task",
-			"Resource": "${SetStartTimeTask.Arn}",
-			"Next": "TestIfIsOddOrEven"
-		},
-		"TestIfIsOddOrEven": {
-			"Type": "Task",
-			"Resource": "${TestIfIsOddOrEvenTask.Arn}",
-			"Next": "ChoiceState"
-		},
-		"ChoiceState": {
-			"Type": "Choice",
-			"Choices": [
-				{
-					"Variable": "$.IsEven",
-					"BooleanEquals": true,
-					"Next": "SetPar"
-				},
-				{
-					"Variable": "$.IsEven",
-					"BooleanEquals": false,
-					"Next": "SetImpar"
-				}
-			]
-		},
-		"SetPar": {
-			"Type": "Task",
-			"Resource": "${SetParTask.Arn}",
-			"Next": "SetEndTime"
-		},
-		"SetImpar": {
-			"Type": "Task",
-			"Resource": "${SetImparTask.Arn}",
-			"Next": "SetEndTime"
-		},
-		"SetEndTime": {
-			"Type": "Task",
-			"Resource": "${SetEndTimeTask.Arn}",
-			"End": true
-		}
-	}
+  "Comment": "State Machine",
+  "StartAt": "SetStartTime",
+  "States": {
+    "SetStartTime": {
+      "Type": "Task",
+      "Resource": "${SetStartTimeTask.Arn}",
+      "Next": "FetchRandomNumber"
+    },
+    "FetchRandomNumber": {
+      "Type": "Task",
+      "Resource": "${FetchRandomNumberTask.Arn}",
+      "Next": "TestIfIsOddOrEven"
+    },
+    "TestIfIsOddOrEven": {
+      "Type": "Task",
+      "Resource": "${TestIfIsOddOrEvenTask.Arn}",
+      "Next": "ChoiceState"
+    },
+    "ChoiceState": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.IsEven",
+          "BooleanEquals": true,
+          "Next": "SetPar"
+        },
+        {
+          "Variable": "$.IsEven",
+          "BooleanEquals": false,
+          "Next": "SetImpar"
+        }
+      ]
+    },
+    "SetPar": {
+      "Type": "Task",
+      "Resource": "${SetParTask.Arn}",
+      "Next": "SetEndTime"
+    },
+    "SetImpar": {
+      "Type": "Task",
+      "Resource": "${SetImparTask.Arn}",
+      "Next": "SetEndTime"
+    },
+    "SetEndTime": {
+      "Type": "Task",
+      "Resource": "${SetEndTimeTask.Arn}",
+      "End": true
+    }
+  }
 }
