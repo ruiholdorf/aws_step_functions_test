@@ -168,7 +168,7 @@ Antes de realizar o deploy é recomendável ter criado um Bucket S3 para armazen
 
 Edite o arquivo aws-lambda-tools-defaults.json, e configure os valores para os parâmetros:
 
-``code
+```code
 "region": "sa-east-1",
 "stack-name": "WebAPITestsCloudFormationStack"
 "s3-bucket": "webapi-tests"
