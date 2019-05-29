@@ -13,9 +13,9 @@ namespace RandomGenerator.Controllers
 
         // GET: api/values
         [HttpGet]
-        public int Get()
+        public JsonResult Get()
         {
-            return _random.Next();
+            return new JsonResult(new Dictionary<string, int> { { "number", _random.Next() } });
         }
     }
 }

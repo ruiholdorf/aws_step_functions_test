@@ -12,9 +12,9 @@ namespace TestIfOddOrEven.Controllers
     public class IsEvenController : ControllerBase
     {
         [HttpGet]
-        public bool Get([FromQuery] int value)
+        public JsonResult Get([FromQuery] int value)
         {
-            return value % 2 == 0;
+            return new JsonResult(new Dictionary<string, bool> { { "isEven", value % 2 == 0 } });
         }
     }
 }
