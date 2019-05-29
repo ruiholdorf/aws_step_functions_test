@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyStepFunctionStarter
 {
-    class SimpleStepFunctionInput
+    public class SimpleStepFunctionInput
     {
         public string Name { get; set; }
         public int Number { get; set; }

@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomGenerator", "RandomGenerator\src\RandomGenerator\RandomGenerator.csproj", "{71254467-9E0C-4B4D-B62C-756C55C0DE91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomGenerator", "RandomGenerator\src\RandomGenerator\RandomGenerator.csproj", "{71254467-9E0C-4B4D-B62C-756C55C0DE91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestIfOddOrEven", "TestIfOddOrEven\src\TestIfOddOrEven\TestIfOddOrEven.csproj", "{C59A0992-26DD-4906-89F5-F3A23DED586F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{71254467-9E0C-4B4D-B62C-756C55C0DE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71254467-9E0C-4B4D-B62C-756C55C0DE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71254467-9E0C-4B4D-B62C-756C55C0DE91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C59A0992-26DD-4906-89F5-F3A23DED586F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C59A0992-26DD-4906-89F5-F3A23DED586F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C59A0992-26DD-4906-89F5-F3A23DED586F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C59A0992-26DD-4906-89F5-F3A23DED586F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,10 +10,11 @@ using Newtonsoft.Json.Serialization;
 
 namespace MyStepFunctionStarter
 {
-    static class Program
+    public static class Program
     {
-        private static readonly string _stateMachineArn = "arn:aws:states:sa-east-1:625718629374:stateMachine:StateMachine-JXS9zp6wTc8S";
-        private static readonly string _executionArn = "arn:aws:states:sa-east-1:625718629374:execution:StateMachine-JXS9zp6wTc8S";
+        private const string _stateMachineArn = "arn:aws:states:sa-east-1:625718629374:stateMachine:StateMachine-JXS9zp6wTc8S";
+        private const string _executionArn = "arn:aws:states:sa-east-1:625718629374:execution:StateMachine-JXS9zp6wTc8S";
+
         private static readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings
         {
             ContractResolver = new DefaultContractResolver
@@ -22,18 +23,19 @@ namespace MyStepFunctionStarter
             },
             NullValueHandling = NullValueHandling.Include
         };
-        private static Random _rnd = new Random();
 
-        static void Main(string[] args)
+        private static readonly Random _rnd = new Random();
+
+        public static void Main(string[] args)
         {
-            Task.Run(async () => await StartAndMonitorExecution()).Wait();
+            Task.Run(async () => await StartAndMonitorExecution().ConfigureAwait(false)).Wait();
 
             Console.WriteLine();
             Console.WriteLine("Done. Press [Enter] or [Return]...");
             Console.ReadLine();
         }
 
-        static async Task StartAndMonitorExecution()
+        private static async Task StartAndMonitorExecution()
         {
             string executionName = Guid.NewGuid().ToString();
 
@@ -56,7 +58,7 @@ namespace MyStepFunctionStarter
                 Console.WriteLine("Sending:");
                 Console.WriteLine(request.Input);
 
-                var response = await client.StartExecutionAsync(request);
+                var response = await client.StartExecutionAsync(request).ConfigureAwait(false);
                 if (response.HttpStatusCode != System.Net.HttpStatusCode.OK)
                 {
                     Console.WriteLine($"Err: {response.HttpStatusCode}");
@@ -70,7 +72,7 @@ namespace MyStepFunctionStarter
                 };
                 while (true)
                 {
-                    var responseStatus = await client.DescribeExecutionAsync(requestStatus);
+                    var responseStatus = await client.DescribeExecutionAsync(requestStatus).ConfigureAwait(false);
                     if (responseStatus.HttpStatusCode == System.Net.HttpStatusCode.OK && responseStatus.Status == ExecutionStatus.SUCCEEDED)
                     {
                         dynamic parsed = JsonConvert.DeserializeObject(responseStatus.Output);
@@ -79,11 +81,9 @@ namespace MyStepFunctionStarter
                     }
 
                     Console.WriteLine($"{responseStatus.Status}...");
-                    await Task.Delay(1500);
+                    await Task.Delay(1500).ConfigureAwait(false);
                 }
             }
         }
     }
-
-
 }

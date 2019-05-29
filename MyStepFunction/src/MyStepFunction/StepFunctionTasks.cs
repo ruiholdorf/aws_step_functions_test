@@ -18,11 +18,11 @@ namespace MyStepFunction
             {
                 using (var httpClient = new HttpClient())
                 using (var request = new HttpRequestMessage(HttpMethod.Get, "https://4xnebbz8yl.execute-api.sa-east-1.amazonaws.com/Prod/api/numbers"))
-                using (var response = await httpClient.SendAsync(request))
+                using (var response = await httpClient.SendAsync(request).ConfigureAwait(false))
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        var number = await response.Content.ReadAsStringAsync();
+                        var number = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                         state.Message = "recuperou da WebAPI";
                         state.Number = int.Parse(number);
                     }
@@ -56,7 +56,7 @@ namespace MyStepFunction
 
         public State TestIfIsOddOrEven(State state, ILambdaContext context)
         {
-            state.IsEven = ((state.Number / 2D) == Math.Abs(state.Number / 2));
+            state.IsEven = state.Number % 2 == 0;
             return state;
         }
 

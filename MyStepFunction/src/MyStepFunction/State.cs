@@ -18,5 +18,6 @@ namespace MyStepFunction
         public int Number { get; set; }
         public bool IsEven { get; set; }
         public string OddOrEven { get; set; }
+        public Dictionary<string, string> Results { get; set; }
     }
 }
