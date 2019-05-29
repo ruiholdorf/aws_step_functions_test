@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Amazon.Lambda.Core;
+using Newtonsoft.Json;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -22,9 +23,12 @@ namespace MyStepFunction
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        var number = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        state.Message = "recuperou da WebAPI";
-                        state.Number = int.Parse(number);
+                        var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        state.Message = "recuperou da WebAPI: " + json;
+                        // como vem num JSON { "number": 123 } basta deserializar para um objeto que caiba a estrutura
+                        var kv = new { number = 0 };
+                        kv = JsonConvert.DeserializeAnonymousType(json, kv);
+                        state.Number = kv.number;
                     }
                     else
                     {
